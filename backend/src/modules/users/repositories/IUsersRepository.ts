@@ -5,10 +5,11 @@ import { User } from '../entities/User';
 interface ICreateUserDTO {
   email: string
   password: string;
+  name: string;
 }
 
 interface IUsersRepository {
-  create({ email, password }: ICreateUserDTO): any
+  create({ email, password, name }: ICreateUserDTO): any
   findByEmail(email: string): any
 }
 

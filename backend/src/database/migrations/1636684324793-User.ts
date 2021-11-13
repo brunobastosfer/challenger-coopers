@@ -18,6 +18,10 @@ export class User1636684324793 implements MigrationInterface {
                             type: "varchar"
                         },
                         {
+                            name: "name",
+                            type: "varchar"
+                        },
+                        {
                             name: "password",
                             type: "varchar"
                         }

@@ -1,26 +1,29 @@
-import { IUsersRepository } from '../../repositories/IUsersRepository'
+import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { hash } from 'bcryptjs'
 
 interface IRequest {
+  name: string;
   email: string;
   password: string;
 }
 
 class CreateUserUseCase {
+  constructor(private createUserUseCase: IUsersRepository){}
 
-  constructor(private usersRepository: IUsersRepository){}
+  async execute({name, email, password}: IRequest): Promise<void>{
+    
+    const UserAlreadyExists = await this.createUserUseCase.findByEmail(email)
 
-  async execute({ email, password }: IRequest): Promise<void>{
-
-    const userAlreadyExists = await this.usersRepository.findByEmail(email)
-
-    if(userAlreadyExists){
-      throw new Error("Já existe um usuário com este email")
+    if(UserAlreadyExists) {
+      throw new Error("Este email já está sendo utilizado")
     }
 
-    return this.usersRepository.create({ email, password })
+    const passwordHash = await hash(password, 8)
+
+    return this.createUserUseCase.create({ name, email, password: passwordHash })
 
   }
-  
+
 }
 
 export { CreateUserUseCase }

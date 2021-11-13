@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import { CreateUseControler } from '../modules/users/useCases/createUser/CreateUserController'
 
 import createUserController from '../modules/users/useCases/createUser';
 

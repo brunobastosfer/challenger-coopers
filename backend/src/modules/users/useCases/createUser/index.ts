@@ -1,15 +1,13 @@
-import { UsersRepository } from "../../repositories/implementations/UsersRepository";  
+import { UsersRepository } from "../../repositories/implementations/UsersRepository";
 import { CreateUserUseCase } from "./CreateUserUseCase";
-import { CreateUseControler } from "./CreateUserController";
+import { CreateUserController } from "./CreateUserController";
 
-export default(): CreateUseControler => {
-
+export default(): CreateUserController => {
   const userRepository = new UsersRepository();
 
-  const createUserUseCase = new CreateUserUseCase(userRepository);
+  const createUserUseCase = new CreateUserUseCase(userRepository)
 
-  const createUseControler = new CreateUseControler(createUserUseCase);
+  const createUserController = new CreateUserController(createUserUseCase)
 
-  return createUseControler
-
+  return createUserController
 }
