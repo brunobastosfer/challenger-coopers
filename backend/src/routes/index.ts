@@ -8,7 +8,7 @@ import { Router } from 'express';
 const router = Router()
 
 router.use("/users", usersRoutes);
-router.use('/todos', ensureAuthenticated,todosRouter);
+router.use('/todos', ensureAuthenticated, todosRouter);
 router.use('/login', loginRoute)
 
 export { router }

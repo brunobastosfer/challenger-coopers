@@ -11,7 +11,7 @@ class AuthenticateUserController {
       const token = await this.authenticateUserController.execute({email, password})
       return response.status(200).json({ token });
     }catch(err) {
-      response.json({ message: err.message })
+      response.status(403).json({ message: err.message })
     }
   }
 }

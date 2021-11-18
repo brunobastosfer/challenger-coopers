@@ -10,7 +10,7 @@ interface ICreateUserDTO {
 
 interface IUsersRepository {
   create({ email, password, name }: ICreateUserDTO): any
-  findByEmail(email: string): any
+  findByEmail(email: string): Promise<User>
 }
 
 export { ICreateUserDTO, IUsersRepository }
