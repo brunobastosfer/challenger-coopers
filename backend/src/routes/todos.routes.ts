@@ -6,6 +6,6 @@ import listTodosController from '../modules/todos/useCases/listTodos'
 const todosRouter = Router()
 
 todosRouter.post('/create', (request, response) => createTodoController().handle(request, response))
-todosRouter.get('/list', (request, response) => listTodosController().handle(request, response))
+todosRouter.post('/list', (request, response) => listTodosController().handle(request, response))
 
 export { todosRouter }
