@@ -12,6 +12,7 @@ interface ITodosRepository {
   listTodosByUser(token:any): Promise<Todo[]>
   editTodo( nomeAntigo: string, novoNome: string, token: string): Promise<void>
   removeTodo(nome: string, token: string): Promise<void>
+  finishTodo(nome: string, token: string): Promise<Todo[]>
 }
 
 export { ICreateTodoDTO, ITodosRepository }

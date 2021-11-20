@@ -4,6 +4,7 @@ import createTodoController from '../modules/todos/useCases/createTodo'
 import listTodosController from '../modules/todos/useCases/listTodos'
 import editTodoController from '../modules/todos/useCases/editTodo';
 import deleteTodoController from '../modules/todos/useCases/deleteTodo';
+import finishTodoController from '../modules/todos/useCases/finishTodo';
 
 const todosRouter = Router()
 
@@ -11,5 +12,6 @@ todosRouter.post('/create', (request, response) => createTodoController().handle
 todosRouter.post('/list', (request, response) => listTodosController().handle(request, response))
 todosRouter.put("/edit", (request, response) => editTodoController().handle(request, response))
 todosRouter.delete('/delete', (request, response) => deleteTodoController().handle(request, response))
+todosRouter.post("/finish", (request, response) => finishTodoController().handle(request, response))
 
 export { todosRouter }

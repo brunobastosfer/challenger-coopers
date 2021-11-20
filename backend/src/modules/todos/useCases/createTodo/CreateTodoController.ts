@@ -5,7 +5,7 @@ class CreateTodoController {
 
   constructor(private createTodoUseCase: CreateTodoUseCase) {}
 
-  async handle(request: Request, response: Response) {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { nome, concluida } = request.body;
     const token = request.user_id;
 

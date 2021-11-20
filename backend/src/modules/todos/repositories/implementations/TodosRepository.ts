@@ -56,6 +56,23 @@ class TodosRepository implements ITodosRepository {
     })
     await this.repository.remove(getTodo)
   }
+
+  async finishTodo(nome: string, token: string): Promise<Todo[]> {
+    let concluidaUpdate = await this.repository.find({
+      where: {
+        user_id: token,
+        nome
+      }
+    })
+    console.log(concluidaUpdate)
+    concluidaUpdate.forEach((item) => {
+      if(item.concluida === false) {
+        item.concluida = true 
+      }
+    });
+    await this.repository.save(concluidaUpdate)
+    return concluidaUpdate
+  }
 }
 
 export { TodosRepository }
