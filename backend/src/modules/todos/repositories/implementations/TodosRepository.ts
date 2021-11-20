@@ -31,6 +31,31 @@ class TodosRepository implements ITodosRepository {
     })
     return todos
   }
+
+  async editTodo(nomeAntigo: string, novoNome: string, token: string): Promise<void> {
+    let nameUpdate = await this.repository.find({
+      where: {
+        user_id: token,
+        nome: nomeAntigo
+      }
+    })
+    nameUpdate.forEach((item) => {
+      if(item.nome === nomeAntigo) {
+        item.nome = novoNome
+      }
+    })
+    await this.repository.save(nameUpdate)
+  }
+
+  async removeTodo(nome: string, token: string): Promise<void> {
+    let getTodo = await this.repository.find({
+      where: {
+        user_id: token,
+        nome: nome
+      }
+    })
+    await this.repository.remove(getTodo)
+  }
 }
 
 export { TodosRepository }
