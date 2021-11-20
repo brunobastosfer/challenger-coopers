@@ -1,12 +1,12 @@
-import { ListTodosUseCase } from "./ListTodosUseCase";
-import { ListTodosController } from "./ListTodosController";
+import { ListCompleteTodosUseCase } from "./ListCompleteTodosUseCase";
+import { ListTodosController } from "./ListCompleteTodosController";
 import { TodosRepository } from "../../repositories/implementations/TodosRepository";
 
 export default (): ListTodosController => {
 
   const todosRepository = new TodosRepository;
 
-  const listTodosUseCase = new ListTodosUseCase(todosRepository)
+  const listTodosUseCase = new ListCompleteTodosUseCase(todosRepository)
 
   const listTodosController = new ListTodosController(listTodosUseCase)
 

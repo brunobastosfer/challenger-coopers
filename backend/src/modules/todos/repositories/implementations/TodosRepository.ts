@@ -25,12 +25,6 @@ class TodosRepository implements ITodosRepository {
     return todo;
   }
 
-  async listTodosByUser(token: any): Promise<Todo[]> {
-    const todos = await this.repository.find({
-      where: {user_id: token}
-    })
-    return todos
-  }
 
   async editTodo(nomeAntigo: string, novoNome: string, token: string): Promise<void> {
     let nameUpdate = await this.repository.find({
@@ -64,7 +58,6 @@ class TodosRepository implements ITodosRepository {
         nome
       }
     })
-    console.log(concluidaUpdate)
     concluidaUpdate.forEach((item) => {
       if(item.concluida === false) {
         item.concluida = true 
@@ -72,6 +65,26 @@ class TodosRepository implements ITodosRepository {
     });
     await this.repository.save(concluidaUpdate)
     return concluidaUpdate
+  }
+
+  async listCompleteTodosByUser(token: string): Promise<Todo[]> {
+    const todos = await this.repository.find({
+      where: {
+        user_id: token,
+        concluida: true
+      }
+    })
+    return todos
+  }
+
+  async listIncompleteTodosByUser(token: any): Promise<Todo[]> {
+    const todos = await this.repository.find({
+      where: {
+        user_id: token,
+        concluida: false
+      }
+    })
+    return todos
   }
 }
 
