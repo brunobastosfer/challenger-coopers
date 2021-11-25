@@ -14,6 +14,7 @@ interface ITodosRepository {
   finishTodo(nome: string, token: string): Promise<Todo[]>
   listCompleteTodosByUser(token:string): Promise<Todo[]>
   listIncompleteTodosByUser(token:string): Promise<Todo[]>
+  removeAllTodo(concluida: boolean, token: string): any
 }
 
 export { ICreateTodoDTO, ITodosRepository }

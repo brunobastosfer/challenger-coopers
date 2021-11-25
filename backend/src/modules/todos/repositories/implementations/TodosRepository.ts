@@ -86,6 +86,17 @@ class TodosRepository implements ITodosRepository {
     })
     return todos
   }
+
+  async removeAllTodo( concluida: boolean, token: string ) {
+    const todos = await this.repository.find({
+      where: {
+        user_id: token,
+        concluida: concluida,
+      }
+    })
+    await this.repository.remove(todos)
+  }
+
 }
 
 export { TodosRepository }

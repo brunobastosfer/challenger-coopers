@@ -23,7 +23,6 @@ class CreateUserUseCase {
     return this.createUserUseCase.create({ name, email, password: passwordHash })
 
   }
-
 }
 
 export { CreateUserUseCase }
